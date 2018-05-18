@@ -1,0 +1,14 @@
+<div class="col-md-12 notecard bottom-10">
+	<img ng-src="{{recipe.image}}" ng-show="recipe.image"
+		class='img-thumbnail pull-left' width="128" height="128">
+	<div class="flex-column">
+	<h2>{{recipe.name}}</h2>
+	<ul>
+		<li ng-repeat="ingredient in recipe.ingredients">
+			{{ingredient.measure}} 
+			<span ng-hide="ingredient.units === 'count'">{{ingredient.units}}</span>
+			{{ingredient.name}}
+		</li>
+	</ul>
+	</div>
+</div>

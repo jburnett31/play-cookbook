@@ -1,0 +1,43 @@
+body {
+	background-color: lightgray;
+}
+
+.bottom-10 {
+	margin-bottom: 10px;
+}
+
+.top-10 {
+	margin-top: 10px;
+}
+
+.notecard {
+	background-image: url("../images/notecard.png");
+	background-size: cover;
+	border-radius: 5px;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.notecard > img {
+	margin: 10px 10px 10px 0px;
+}
+
+.notecard > div > h2 {
+	margin-top: 2px;
+}
+
+.notecard > div > ul {
+	margin-top: -5px;
+}
+
+li {
+	margin-top: 0;
+	font-size: 1em;
+}
+
+.btn {
+	margin-top: 10px;
+}

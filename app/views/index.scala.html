@@ -1,0 +1,32 @@
+@()(implicit request: RequestHeader)
+@import helper._
+<!-- @main("Welcome to Play") {
+  <h1>Welcome to Play!</h1>
+} -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src *; child-src 'none';">
+<title>Cookbook</title>
+<link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+<link href="assets/stylesheets/main.css" rel="stylesheet">
+<script src="assets/javascripts/angular.min.js"></script>
+<script src="assets/javascripts/angular-ui-router.js"></script>
+<script src="assets/javascripts/angularApp.js"></script>
+<script src="assets/javascripts/main.controller.js"></script>
+<script src="assets/javascripts/recipe.service.js"></script>
+<script src="assets/javascripts/recipe.controller.js"></script>
+<script src="assets/javascripts/recipe-container.directive.js"></script>
+<script src="assets/javascripts/recipe-form.directive.js"></script>
+<script src="assets/javascripts/ingredient-input.directive.js"></script>
+</head>
+<body ng-app="cookbook">
+<div class=".container-fluid">
+	<ui-view></ui-view>
+</div>
+@form(action = routes.HomeController.index){
+  @CSRF.formField
+}
+</body>
+</html>
+
