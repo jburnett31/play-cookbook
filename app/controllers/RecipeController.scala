@@ -22,6 +22,10 @@ class RecipeController @Inject()(cc: ControllerComponents,
     dao.getRecipes map {recipes => Ok(Json.toJson(recipes)).as("application/json")}
   }
 
+  def ingredients() = Action.async { implicit request =>
+    dao.getIngredients map {ingredients => Ok(Json.toJson(ingredients))}
+  }
+
   def recipe(id: Int) = Action.async { implicit request: Request[AnyContent] =>
     println(s"Got request for recipe $id")
     dao.getIngredients(id) map {ingredients => Ok(Json.toJson(ingredients))}
@@ -38,10 +42,21 @@ class RecipeController @Inject()(cc: ControllerComponents,
       }
     )
   }
-  
+
+  def addIngredient() = Action.async(parse.json) { implicit request =>
+    request.body.validate[Ingredient].fold(
+      errors => {
+        Future(BadRequest(Json.obj("status" ->"KO", "message" -> JsError.toJson(errors))))
+      },
+      ingredient => {
+        dao.saveIngredient(ingredient) map {_ => Ok}
+      }
+    )
+  }
+
   def addIngredient(id: Int) = Action.async(parse.json) { implicit request =>
     println("addIngredient called")
-    request.body.validate[Ingredient].fold(
+    request.body.validate[RecipeIngredient].fold(
       errors => {
         Future(BadRequest(Json.obj("status" ->"KO", "message" -> JsError.toJson(errors))))
       },

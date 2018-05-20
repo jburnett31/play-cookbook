@@ -18,14 +18,21 @@ class RecipeDAO {
       })
     }
   }
+  def getIngredients() = {
+    db.run(ingredients.result) map {v =>
+      v map { i =>
+        Ingredient(i._1, i._2, i._3)
+      }
+    }
+  }
   def getIngredients(id: Int) = {
     val query = for {
         ri <- recipeIngredients if ri.recipeId === id
         i <- ri.ingredient
-      } yield (ri.ingredientId, i.name, ri.measure, ri.units)
+      } yield (ri.id, ri.ingredientId, i.name, ri.measure, ri.units)
     db.run(query.result) map { v =>
       v map { r =>
-        Ingredient(r._1, r._2, r._3, r._4)
+        RecipeIngredient(r._1, r._2, r._3, r._4, r._5)
       }
     }
   }
@@ -34,13 +41,16 @@ class RecipeDAO {
       (recipes returning recipes.map(_.id)) += (recipe.id, recipe.name, recipe.image)
     db.run(recipeId)
   }
-  def saveIngredient(recipeId: Int, ingred: Ingredient) = {
-    println(s"Saving ingredient $ingred")
+  def saveIngredient(ingred: Ingredient) = {
     val ingrdId =
-      (ingredients returning ingredients.map(_.id)) += (ingred.id, ingred.name)
-    db.run(ingrdId) flatMap {_id =>
-      val second = recipeIngredients += (0, recipeId, _id, ingred.measure, ingred.units)
-      db.run(second)
-    }
+      (ingredients returning ingredients.map(_.id)) += (ingred.id, ingred.name, ingred.image)
+    db.run(ingrdId)
+  }
+  def saveIngredient(recipeId: Int, ingred: RecipeIngredient) = {
+    println(s"Saving ingredient $ingred")
+    val ingredId = 
+      (recipeIngredients returning recipeIngredients.map(_.id)) += 
+        (0, recipeId, ingred.ingredientId, ingred.measure, ingred.units)
+    db.run(ingredId)
   }
 }

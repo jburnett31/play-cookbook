@@ -14,6 +14,7 @@ body {
 	background-image: url("../images/notecard.png");
 	background-size: cover;
 	border-radius: 5px;
+	border: 1px solid black;
 }
 
 .flex-column {
@@ -40,4 +41,60 @@ li {
 
 .btn {
 	margin-top: 10px;
+}
+
+.ingredients-horizontal {
+	display: flex;
+	align-items: center;
+	overflow-x: auto;
+	margin-top: 20px;
+}
+
+.ingredient-small {
+	display: inline-block;
+	position: relative;
+	height: 128px;
+	width: 128px;
+	cursor: pointer;
+}
+
+.ingredient-small div {
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.ingredient-small span {
+	font-size: 2em;
+}
+
+.ingredient-small:hover img {
+	opacity: 0.3;
+}
+
+.ingredient-small:hover div {
+	opacity: 1;
+}
+
+.add-ingredient {
+	display: inline-block;
+	width: 128px;
+	height: 110px;
+	text-align: center;
+	margin: 10px;
+}
+
+.add-ingredient a {
+	width: 128px;
+}
+
+.add-ingredient span {
+	line-height: 100px;
+	font-size: 2em;
+	background: white;
+	border-radius: 5px;
+	width: 100px;
+	height: 100px;
 }

@@ -13,10 +13,11 @@ object Schema {
     def * = (id, name, image)
   }
 
-  class Ingredient(tag: Tag) extends Table[(Int, String)](tag, "Ingredient") {
+  class Ingredient(tag: Tag) extends Table[(Int, String, String)](tag, "Ingredient") {
     def id = column[Int]("IngredientID", O.PrimaryKey, O.AutoInc)
     def name = column[String]("Name")
-    def * = (id, name)
+    def image = column[String]("Image")
+    def * = (id, name, image)
   }
 
   class RecipeIngredient(tag: Tag) extends Table[(Int, Int, Int, Double, String)] (tag, "RecipeIngredient") {

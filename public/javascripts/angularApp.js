@@ -14,7 +14,12 @@ function($stateProvider, $urlRouterProvider, $httpProvider) {
 		.state('add-recipe', {
 			url: '/add-recipe',
 			templateUrl: '/assets/templates/add-recipe.html',
-			controller: 'RecipeController'
+			controller: 'RecipeController',
+			resolve: {
+				ingredientPromise: ['recipes', function(recipes) {
+					return recipes.getIngredients();
+				}]
+			}
 		})
 		.state('recipes', {
 			url: '/recipes-list',

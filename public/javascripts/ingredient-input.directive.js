@@ -3,7 +3,8 @@ app.directive('ingredientInput', function() {
 	return {
 		restrict: 'E',
 		scope: { 
-			ingredient: '='
+			ingredient: '=',
+			removeIngredient: '&'
 		},
 		templateUrl: '../assets/templates/ingredient-input.html',
 		link: function(scope, element, attrs) {

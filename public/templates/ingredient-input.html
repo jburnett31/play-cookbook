@@ -1,4 +1,5 @@
-<input type="text" placeholder="Ingredient" ng-model="ingredient.name" class="form-control"></input>
+<img ng-src="{{ingredient.image}}" class='img-thumbnail pull-left' width="128" height="128" />
+<input type="text" placeholder="Ingredient" ng-model="ingredient.name" class="form-control" readonly></input>
 <input type="number" step="any" placeholder="Quantity" ng-model="ingredient.measure" class="form-control"></input>
 <input type="text" placeholder="Units" ng-model="ingredient.units" class="form-control"></input>
 <button ng-click="removeIngredient($index)" type="button" class="glyphicon glyphicon-remove"></button>

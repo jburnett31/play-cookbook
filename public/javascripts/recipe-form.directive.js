@@ -5,14 +5,14 @@ app.directive('recipeForm', function() {
 		controller: 'RecipeController',
 		templateUrl: '../assets/templates/recipe-form.html',
 		link: function(scope, element, attrs) {
-			scope.ingredients = [];
+			scope.recipeIngredients = [];
 			var tokenInput = document.getElementsByName('csrfToken')[0];
 			scope.token = tokenInput.getAttribute('value');
-			scope.addIngredient = function() {
-				if (scope.ingredients.length == 0 ||
-					scope.ingredients[scope.ingredients.length - 1].name) {
-						var ingredient = {name: '', measure: 0, units: ''};
-						scope.ingredients.push(ingredient);
+			scope.addIngredient = function(ingredient) {
+				if (scope.recipeIngredients.length == 0 ||
+					scope.recipeIngredients[scope.recipeIngredients.length - 1].name) {
+						var ingred = {id: ingredient.id, name: ingredient.name, image: ingredient.image, measure: 0, units: ''};
+						scope.recipeIngredients.push(ingred);
 				}
 			};
 		}

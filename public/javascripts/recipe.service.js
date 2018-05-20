@@ -5,11 +5,17 @@ app.factory('recipes', [
 '$http', '$q',
 function($http, $q) {
 	var o = {
-		recipes: []
+		recipes: [],
+		ingredients: []
 	};
 	o.getAll = function() {
 		return $http.get('/recipes/').then(function(response) {
 			angular.copy(response.data, o.recipes);
+		});
+	};
+	o.getIngredients = function() {
+		return $http.get('/recipes/ingredients').then(function(response) {
+			angular.copy(response.data, o.ingredients);
 		});
 	};
 	o.create = function(recipe, token) {
@@ -20,7 +26,10 @@ function($http, $q) {
 			var recipeId = response.data;
 			var promises = [];
 			for (var i = 0; i < recipe.ingredients.length; i++) {
-				promises.push(o.addIngredient(recipeId, recipe.ingredients[i], token));
+				var ingred = recipe.ingredients[i];
+				ingred.ingredientId = ingred.id;
+				delete ingred.id;
+				promises.push(o.addIngredient(recipeId, ingred, token));
 			}
 			$q.all(promises, function(response2) {
 				o.recipes.push(response2.data);

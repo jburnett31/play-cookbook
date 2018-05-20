@@ -17,8 +17,14 @@ class RecipeRouter @Inject()(controller: RecipeController)
     case GET(p"/${int(id)}") =>
       controller.recipe(id)
 
+    case GET(p"/ingredients") =>
+      controller.ingredients
+
     case POST(p"/") =>
       controller.addRecipe
+
+    case POST(p"/ingredients") =>
+      controller.addIngredient
 
     case POST(p"/${int(id)}/ingredients") =>
       controller.addIngredient(id)
