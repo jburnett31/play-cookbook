@@ -1,7 +1,7 @@
 @()(implicit request: RequestHeader)
 @import helper._
 <!-- @main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+	<h1>Welcome to Play!</h1>
 } -->
 <!DOCTYPE html>
 <html>
@@ -30,7 +30,7 @@
 	<ui-view></ui-view>
 </div>
 @form(action = routes.HomeController.index){
-  @CSRF.formField
+	@CSRF.formField
 }
 </body>
 </html>

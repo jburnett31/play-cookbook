@@ -1,0 +1,10 @@
+<div class="ingredients-horizontal">
+	<div class="add-ingredient">
+		<a href="#" ng-click="addIngredient()" title="Add Ingredient">
+			<span class="glyphicon glyphicon-plus"></span>
+		</a>
+	</div>
+	<div ng-repeat="ingredient in ingredients">
+		<ingredient-small ingredient="ingredient" add-ingredient="addIngredient"></ingredient-small>
+	</div>
+</div>

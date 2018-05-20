@@ -1,0 +1,8 @@
+<div class="col-md-12 notecard bottom-10">
+    <div class="flex-column">
+        <h2>{{meal.name}}</h2>
+        <div ng-repeat="recipe in meal.recipes" class="row">
+            <recipe-container recipe="recipe"></recipe-container>
+        </div>
+    </div>
+</div>

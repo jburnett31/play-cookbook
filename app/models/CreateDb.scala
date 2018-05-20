@@ -15,11 +15,11 @@ object DbCreator {
     recipes += (1, "Beef Stew", "http://www.superhealthykids.com/wp-content/uploads/2015/11/SC-meat-1024x1024.jpg"),
     recipes += (2, "Moscow Mule", ""),
     ingredients ++= Seq(
-      (1, "stew meat"),
-      (2, "onion"),
-      (3, "vodka"),
-      (4, "lime juice"),
-      (5, "ginger beer")
+      (1, "stew meat", ""),
+      (2, "onion", ""),
+      (3, "vodka", ""),
+      (4, "lime juice", ""),
+      (5, "ginger beer", "")
     ),
     recipeIngredients ++= Seq(
       (1, 1, 1, 2, "lbs"),
