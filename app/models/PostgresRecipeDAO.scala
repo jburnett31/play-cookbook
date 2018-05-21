@@ -17,7 +17,7 @@ class PostgresRecipeDAO @Inject() (lifecycle: ApplicationLifecycle) extends Reci
     db.run(recipes.result) flatMap { v =>
       Future.sequence(v map { r => 
         getIngredients(r._1) map { igdts =>
-          Recipe(r._1, r._2, r._3, igdts)
+          Recipe(r._1, r._2, r._3, igdts, r._4)
         }
       })
     }
@@ -42,7 +42,7 @@ class PostgresRecipeDAO @Inject() (lifecycle: ApplicationLifecycle) extends Reci
   }
   def saveRecipe(recipe: Recipe) = {
     val recipeId = 
-      (recipes returning recipes.map(_.id)) += (recipe.id, recipe.name, recipe.image)
+      (recipes returning recipes.map(_.id)) += (recipe.id, recipe.name, recipe.image, recipe.instructions)
     db.run(recipeId)
   }
   def saveIngredient(ingred: Ingredient) = {

@@ -6,11 +6,12 @@ import play.api.libs.functional.syntax._
 import slick.jdbc.PostgresProfile.api._
 
 object Schema {
-  class Recipe(tag: Tag) extends Table[(Int, String, String)](tag, "Recipe") {
+  class Recipe(tag: Tag) extends Table[(Int, String, String, String)](tag, "Recipe") {
     def id = column[Int]("RecipeID", O.PrimaryKey, O.AutoInc)
     def name = column[String]("Name")
     def image = column[String]("Image")
-    def * = (id, name, image)
+    def instructions = column[String]("Instructions")
+    def * = (id, name, image, instructions)
   }
 
   class Ingredient(tag: Tag) extends Table[(Int, String, String)](tag, "Ingredient") {

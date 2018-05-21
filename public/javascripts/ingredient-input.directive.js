@@ -4,7 +4,7 @@ app.directive('ingredientInput', function() {
 		restrict: 'E',
 		scope: { 
 			ingredient: '=',
-			removeIngredient: '&'
+			removeIngredient: '='
 		},
 		templateUrl: '../assets/templates/ingredient-input.html',
 		link: function(scope, element, attrs) {

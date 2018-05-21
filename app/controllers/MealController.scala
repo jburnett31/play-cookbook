@@ -51,9 +51,8 @@ class MealController @Inject()(cc: ControllerComponents,
     )
   }
 
-  def getWeek(week: Int) = Action/*.async*/ { implicit request =>
+  def getWeek(week: Int) = Action.async { implicit request =>
     println(s"get request for week $week")
-    // dao.getMealsByWeek(week) map {meals => Ok(Json.toJson(meals))}
-    Ok
+    dao.getMealsByWeek(week) map {meals => Ok(Json.toJson(meals))}
   }
 }

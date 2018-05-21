@@ -1,0 +1,5 @@
+<form ng-submit="saveIngredient()" class="form-inline">
+	<input type="text" placeholder="Ingredient name" ng-model="name" class="form-control"></input>
+	<input type="text" placeholder="http://example.com/image.jpg" ng-model="image" class="form-control"></input><br>
+	<button ng-show="name.length > 0" type="submit" class="btn btn-primary">Save</button>
+</form>

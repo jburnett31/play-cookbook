@@ -11,6 +11,11 @@ function($stateProvider, $urlRouterProvider, $httpProvider) {
 			templateUrl: '/assets/templates/home.html',
 			controller: 'MainController'
 		})
+		.state('add-ingredient', {
+			url: '/add-ingredient',
+			templateUrl: '/assets/templates/add-ingredient.html',
+			controller: 'RecipeController'
+		})
 		.state('add-recipe', {
 			url: '/add-recipe',
 			templateUrl: '/assets/templates/add-recipe.html',

@@ -19,7 +19,8 @@ function($http, $q) {
 		});
 	};
 	o.create = function(recipe, token) {
-		return $http.post('/recipes/', {name: recipe.name, image: recipe.image},
+		return $http.post('/recipes/', {name: recipe.name,
+			image: recipe.image, instructions: recipe.instructions},
 			{headers: {'Csrf-Token': token}})
 			.then(function(response) {
 			console.log('success ', response.data);
@@ -35,6 +36,10 @@ function($http, $q) {
 				o.recipes.push(response2.data);
 			});
 		});
+	};
+	o.createIngredient = function(ingredient, token) {
+		return $http.post('/recipes/ingredients', ingredient,
+			{headers: {'Csrf-Token': token}});
 	};
 	o.addIngredient = function(id, ingredient, token) {
 		return $http.post('/recipes/' + id + '/ingredients', ingredient,

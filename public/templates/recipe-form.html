@@ -4,11 +4,14 @@
 	<br>
 	<h4>Ingredients:</h4>
 	<div ng-repeat="ingredient in recipeIngredients" class="form-group col-md-12">
-		<ingredient-input ingredient="ingredient"></ingredient-input>
+		<ingredient-input ingredient="ingredient" remove-ingredient="removeIngredient"></ingredient-input>
 		<br>
 	</div>
+	<hr>
+	<h4>Instructions:</h4>
+	<textarea placeholder="Instructions" class="form-control" cols="44"
+		ng-model="instructions"></textarea><br>
 	<!--<button ng-click="addIngredient()" type="button" class="btn">New Ingredient</button>-->
 	<button ng-show="recipeIngredients.length > 0" type="submit" class="btn btn-primary">Save</button>
 </form>
-<ingredients-bar ingredients="ingredients" add-ingredient="addIngredient"
-	remove-ingredient="removeIngredient"></ingredients-bar>
+<ingredients-bar ingredients="ingredients" add-ingredient="addIngredient"></ingredients-bar>

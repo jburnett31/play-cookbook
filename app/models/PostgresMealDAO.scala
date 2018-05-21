@@ -41,7 +41,7 @@ class PostgresMealDAO @Inject() (lifecycle: ApplicationLifecycle) extends MealDA
     } yield (r.id, r.name, r.image)
     db.run(query.result) map { v =>
       v map { r =>
-        Recipe(r._1, r._2, r._3, Seq.empty)
+        Recipe(r._1, r._2, r._3, Seq.empty, "")
       }
     }
   }

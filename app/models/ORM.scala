@@ -4,7 +4,7 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 
 case class Recipe(id: Int, name: String, image: String,
-  ingredients: Seq[RecipeIngredient])
+  ingredients: Seq[RecipeIngredient], instructions: String)
 case class Ingredient(id: Int, name: String, image: String)
 case class RecipeIngredient(id: Int, ingredientId: Int, name: String,
   measure: Double, units: String)
@@ -19,7 +19,9 @@ object Implicits {
     (__ \ "image").lazyFormatNullable(implicitly[Format[String]])
       .inmap[String](_ getOrElse "", Some(_)) and
     (__ \ "ingredients").lazyFormatNullable(implicitly[Format[Seq[RecipeIngredient]]])
-      .inmap[Seq[RecipeIngredient]](_ getOrElse Seq.empty, Some(_))
+      .inmap[Seq[RecipeIngredient]](_ getOrElse Seq.empty, Some(_)) and
+    (__ \ "instructions").lazyFormatNullable(implicitly[Format[String]])
+      .inmap[String](_ getOrElse "", Some(_))
   )(Recipe.apply, unlift(Recipe.unapply))
 
   implicit val ingredientFormat: Format[Ingredient] = (

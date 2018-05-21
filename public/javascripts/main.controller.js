@@ -10,6 +10,7 @@ function($scope, recipes) {
 		recipes.create({
 			name: $scope.name,
 			image: $scope.image,
+			instructions: $scope.instructions,
 		}).then(function(response) {
 			for (var i = 0; i < ingredients.length; i++) {
 				addIngredient()
@@ -21,7 +22,7 @@ function($scope, recipes) {
 	$scope.addIngredient = function(recipe, ingredient) {
 		recipes.addIngredient(recipe.id, {
 			name: ingredient.name,
-			ingredientId: ingredient.id,
+			ingredientId: ingredient.ingredientId,
 			measure: ingredient.measure,
 			units: ingredient.units
 		}).then(function(response) {
