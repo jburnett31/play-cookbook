@@ -5,11 +5,12 @@
 	<h2>{{recipe.name}}</h2>
 	<ul>
 		<li ng-repeat="ingredient in recipe.ingredients">
-			{{ingredient.measure}} 
+			{{ingredient.measure}}
 			<span ng-hide="ingredient.units === 'count'">{{ingredient.units}}</span>
 			{{ingredient.name}}
 		</li>
 	</ul>
 	</div>
-	<textarea ng-model="recipe.instructions" class="fill" readonly></textarea>
+	<textarea ng-show="recipe.instructions.length > 0"
+		ng-model="recipe.instructions" class="fill" readonly></textarea>
 </div>
