@@ -27,7 +27,7 @@ object Schema {
     def ingredientId = column[Int]("IngredientID")
     def measure = column[Double]("Measure")
     def units = column[String]("Units")
-    def recipe = foreignKey("RecipeFK", recipeId, recipes)(_.id)
+    def recipe = foreignKey("RecipeFK", recipeId, recipes)(_.id, onDelete=ForeignKeyAction.Cascade)
     def ingredient = foreignKey("IngredientFK", ingredientId, ingredients)(_.id)
     def * = (id, recipeId, ingredientId, measure, units)
   }
@@ -42,8 +42,8 @@ object Schema {
     def id = column[Int]("MealRecipeID", O.PrimaryKey, O.AutoInc)
     def mealId = column[Int]("MealID")
     def recipeId = column[Int]("RecipeID")
-    def meal = foreignKey("MealFK", mealId, meals)(_.id)
-    def recipe = foreignKey("RecipeFK", recipeId, recipes)(_.id)
+    def meal = foreignKey("MealFK", mealId, meals)(_.id, onDelete=ForeignKeyAction.Cascade)
+    def recipe = foreignKey("RecipeFK", recipeId, recipes)(_.id, onDelete=ForeignKeyAction.Cascade)
     def * = (id, mealId, recipeId)
   }
 
@@ -52,7 +52,7 @@ object Schema {
     def week = column[Int]("WeekNumber")
     def day = column[Int]("DayOfWeek")
     def mealId = column[Int]("MealID")
-    def meal = foreignKey("MealFK", mealId, meals)(_.id)
+    def meal = foreignKey("MealFK", mealId, meals)(_.id, onDelete=ForeignKeyAction.Cascade)
     def * = (id, week, day, mealId)
   }
 
